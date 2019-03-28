@@ -1,10 +1,17 @@
-player1 = "Paladin"
-health1 = 60
+def barracks(name, health)
+  "Greetings, #{name}. Your initial health will be granted as #{health} at #{clocktower}."
+  # Remember, Ruby automatically returns the last value
+end
 
-player2 = "Garrison"
-health2 = 60
+def clocktower
+  time = Time.new
+  time.strftime("%I:%M:%S")
+end
 
-# puts "Players:\n\t#{player1}\n\t#{player2}"
+puts barracks("Paladin", 60)
+puts barracks("Garrison", 60)
+# puts name - local variable can't be found because it's out of scope
+
 
 x = 8
 puts "Hello #{x}th player"
@@ -41,6 +48,12 @@ puts "Hello #{x}th player"
 
   SSO - Authentication: Who you are
   CanCan - Authorization: What you can do
+
+  self.puts("What's my method?")
+  puts ("What's my method?")
+  Anytime there isn't an implicit reciever (left side of dot), it is self
+  Main is a global object referenced by self
+  Self is a private method
 
 
 
