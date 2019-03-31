@@ -1,55 +1,73 @@
-class Player
-  # intitialize is never called directly, but instead called by "new"
-  def initialize(name, health=60)
-    @name = name.capitalize
-    @health = health
-    # Remember, Ruby automatically returns the last value
-  end
+require_relative 'player' # unneccessary because game class requires player
+require_relative 'game'
 
-  def health_decrease #instance method
-    @health -= 1
-  end
+# player1 = Player.new("moe")
+# player2 = Player.new("larry", 60)
+# player3 = Player.new("curly", 125)
+    
+# knuckleheads = Game.new("Knuckleheads")
+# knuckleheads.add_player(player1)
+# knuckleheads.add_player(player2)
+# knuckleheads.add_player(player3)
+# knuckleheads.play
 
-  attr_accessor :health
 
-  def barracks
-    "Greetings, #{@name}. Your initial health will be granted as #{@health} at #{clocktower}."
-  end
 
-  def status
-    "#{@name} has a health of #{@health}"
-  end
+paladin = Player.new("paladin", 60)
+garrison =  Player.new("garrison", 60)
+# paladin/garrison is instance of class at this point
+# puts name - local variable can't be found because it's out of scope
+player3 =  Player.new("mechanical horseman", 30)
+player4 =  Player.new("acolyte", 30)
 
-  def clocktower
-    time = Time.new
-    time.strftime("%I:%M:%S")
-  end
+puts "Welcome to the barracks. Please select your player."
+# puts always wants a string, will always implicitly ask for .to_s
+puts "Paladin - White troll with massive sword\nGarrison - Golden troll with enormous axe\n"
+choice = gets.chomp
+if (choice == "Paladin")
+  puts "Beware of the mechanical horsemen!\n\n\n"
+  player1 = Player.new("Paladin")
+else
+  puts "Beware of the acolytes!\n\n\n"
+  player1 = Player.new("Garrison")
 end
+# figure out how to set name and player object dynamically without if statement
+# What name do you want, and what starting health?
 
-  player1 = Player.new("paladin", 60)
-  player2 =  Player.new("garrison", 60)
-  # player1 is instance of class at this point
-  # puts name - local variable can't be found because it's out of scope
-  puts player1.barracks
-  puts player2.barracks
-  # puts always wants a string, will always implicitly ask for .to_s
+puts player1
+
+
+
   
-  3.times do
-    player1.health_decrease
-    player2.health_decrease
-  end
+#   puts choice.barracks
+  
 
-  puts player1.status
-  puts player2.status
-  puts player1.health
-  puts player2.health
-  player1.health = 60
-  player2.health = 60
-  puts player1.health
-  puts player2.health
+#   puts paladin.status
+#   puts garrison.status
 
-x = 8
-puts "Hello #{x}th player"
+#   players = [paladin, garrison, player3, player4]
+
+#   players.each do |player|
+#     5.times do
+#       player.health_decrease
+#     end
+#     puts player.health
+#   end
+
+# x = 8
+# puts "Hello #{x}th player"
+
+# knuckleheads = Game.new("Knuckleheads")
+# knuckleheads.add_player(player1)
+# knuckleheads.add_player(player2)
+
+
+
+# puts will call .to_s on whatever you give it
+# calling to_s is only a naming convention taking advantage of the fact that puts explicity calls it at the end of the object
+
+
+
 
 =begin
   \n - newline
@@ -108,5 +126,12 @@ puts "Hello #{x}th player"
   Read up on instance in Ruby
   Class method = static method
   Class method does not have access to instance variables because it's operating at class level not instance level
+
+  .each is a method!
+  status.each do
+
+  Encapsulation: Tell the method what to do, don't ask about it - we don't care what it contains, only what it does
+  
+
 
 =end
