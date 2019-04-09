@@ -1,6 +1,6 @@
 class Player
   # intitialize is never called directly, but instead called by "new"
-  def initialize(name, health=60)
+  def initialize(name, health=5)
     @name = name.capitalize
     @health = health
     # Remember, Ruby automatically returns the last value
@@ -8,10 +8,6 @@ class Player
 
   def health_decrease #instance method
     @health -= 1
-  end
-
-  def to_s
-    "Hi, I'm, #{@name}! My health is #{@health}!"
   end
 
   attr_accessor :health
@@ -39,4 +35,9 @@ class Player
     player.blam
     puts player.health
   end
+
+  # def find
+    # Making a database call could be an example of a class method, as the call to the DB isn't tied to an instance
+    # Class methods are all static methods
+  # end
 end
