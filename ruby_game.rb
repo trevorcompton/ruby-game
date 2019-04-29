@@ -1,19 +1,29 @@
 require_relative 'player' # unneccessary because game class requires player
 require_relative 'game'
-
+puts "\n<><><><><><><><><><><><><><><><><><><><><><><><><><>"
 puts "Welcome to the barracks. Please select your player."
 # puts always wants a string, will always implicitly ask for .to_s
-puts "Paladin - White troll with massive sword\nGarrison - Golden troll with enormous axe\n\n"
+puts "<><><><><><><><><><><><><><><><><><><><><><><><><><>\n\n\n\n"
+
+puts "//================={DOMINION}=================\\\\"
+puts "|| Paladin - White troll with massive sword   ||\n"
+puts "|| Garrison - Golden troll with enormous axe  ||\n"
+puts "\\\\============================================//\n\n\n\n"
+puts "(Type 'Paladin' or 'Garrison' -- case sensitive)\n"
 # puts will call .to_s on whatever you give it
 # calling to_s is only a naming convention taking advantage of the fact that puts explicity calls it at the end of the object
 player1 = Player.new(gets.chomp) # chomp removes newline at the end
 player2 = Player.new("opponent", 5)
-puts "\n\nYou have selected the #{player1.name} at your own peril.\n\n"
+puts "\n\n..........................................."
+puts "You have selected the #{player1.name} at your own peril."
+puts "...........................................\n\n"
 dominion = Game.new("dominion") # pass player and opponent instances into Game class
 dominion.add_player(player1)
 dominion.add_player(player2)
 dominion.play
 
+# "Everything is an object" in Ruby means that everything was created from a class
+# String "Joe" <- String class <- Class class
 
 
 

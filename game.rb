@@ -21,7 +21,7 @@ class Game
     puts "Here are your moves: \n"
     if @name == "Paladin"
       puts "a - Inquisitive Strike"
-      puts "s - Shield of Faith"
+      puts "s - Shield of Deliverance"
       puts "d - Blitzkreig"
       puts "w - Summoning of the Acolytes"
     else
@@ -41,8 +41,7 @@ class Game
       i = 3
     elsif i == "w"
       i = 4
-    end
-    return i
+    end # will return the result of the assignment statement
     # puts input # can be its own test block
   end
 
@@ -54,25 +53,34 @@ class Game
 
   def battle
     input = get_input
-    # puts input - should be its own test
     ai = rand(1...4)
-    #BattleLogic.battle_logic(@player1, @player2, input, ai)
     code = BattleLogic.battle_logic(@player1, @player2, input, ai) # refactor to use as mixin
     # this is saying assign "code" to whatever is returned by calling that method
     puts code.to_s
-    puts @player1.health
-    puts @player2.health
+    puts "Your health: #{@player1.health}"
+    puts "Enemy health: #{@player2.health}"
+    puts"\n\n\n"
   end
 
-  def winner
-    if @player1.health > 0 || @player2.health == 0
-      puts "Congratulations #{@player1.name}! You have defeated thine opponent in the field of battle!"
+  def winner(player1, player2)
+    if player1.health > 0 || player2.health == 0
+      puts "Congratulations #{player1.name}! You have defeated thine opponent in the field of battle!"
     else
-      puts "#{@player1.name}, thine enemy has struck you down. Train harder next time!"
+      puts "#{player1.name}, thine enemy has struck you down. Train harder next time!"
     end
   end
 
-  # winner? method - use tdd
+  def random
+    chance = rand(1...10)
+    if chance == 2
+      puts "Thou hast been blessed with more health - continue fighting!"
+      @player1.health += 1
+    elsif chance == 5
+      puts "Thine enemy has been granted more health - beware!"
+      @player2.health += 1
+    else
+    end
+  end
 
   def play
     moves
@@ -80,8 +88,9 @@ class Game
     @player1 = @players[0]
     @player2 = @players[1]
     until @player1.health == 0 || @player2.health == 0 do
+      random
       battle
     end
-    winner
+    winner(@player1, @player2)
   end
 end

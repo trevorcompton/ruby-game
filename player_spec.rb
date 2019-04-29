@@ -21,7 +21,7 @@ describe Player do
       @player = Player.new("archibald")
     end
     it "has an initial health" do
-      @player.health.should == 60
+      @player.health.should == 5
     end
   end
 end
